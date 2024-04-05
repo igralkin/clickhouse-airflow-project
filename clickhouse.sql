@@ -23,17 +23,18 @@ SETTINGS index_granularity = 8192;
 
 
 
-select 
+SELECT 
 	area
-from (
-	select 
+FROM (
+	SELECT 
 		area,
 		count() AS cell_count
-	from 
-		cell_towers ct 
-	where 
+	FROM 
+		cell_towers 
+	WHERE 
 		mcc = 250 AND radio != 'LTE'
 	GROUP BY area
 )
-where 
+WHERE 
 	cell_count > 2000;
+-- Результат: 315 строк
